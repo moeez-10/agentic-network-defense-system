@@ -37,6 +37,7 @@ def handle_packet(packet):
     if packet.haslayer(Raw):
         payload_bytes = packet[Raw].load
         payload_len = len(payload_bytes)
+        
         payload_text = payload_bytes.decode("utf-8", errors="ignore")
 
     # L7 detection
