@@ -1,0 +1,57 @@
+# Agentic Network Defense System - Configuration
+
+capture:
+  interface: null          # e.g., "Wi-Fi" on Windows, "eth0" on Linux. null = default
+  packet_count: 0          # 0 = run continuously (later). For testing you can set 20/50.
+  store_packets: false
+
+detection:
+  # Signature rules file (Day 7)
+  rules_file: "detection/rules.json"
+
+  # Anomaly thresholds (Day 9)
+  rate_window_sec: 5
+  rate_threshold: 20        # packets per window from same src IP => alert
+
+  payload_size_threshold: 5000   # bytes => alert (unusually large payload)
+  portscan_unique_ports: 10      # unique ports within window => alert
+  portscan_window_sec: 60
+
+ips:
+  enabled: false            # Day 11: set true when implementing blocking
+  action_mode: "SIMULATE"   # SIMULATE or IPTABLES (Linux only)
+
+zero_trust:
+  # Trust scoring (Day 13+)
+  initial_trust: 100
+  trust_min: 0
+  trust_max: 100
+
+  # Micro-segmentation definitions (Day 14)
+  segments:
+    web_tier:
+      subnet: "192.168.1.0/24"
+      min_trust: 60
+    app_tier:
+      subnet: "10.0.0.0/24"
+      min_trust: 70
+    db_tier:
+      subnet: "172.16.0.0/24"
+      min_trust: 80
+
+  # Allowed traffic between segments (Day 14)
+  allowed_flows:
+    - from: "web_tier"
+      to: "app_tier"
+    - from: "app_tier"
+      to: "db_tier"
+
+agent:
+  # Agent decision tuning (Day 18+)
+  enabled: true
+  throttle_on_medium: true
+
+dashboard:
+  host: "127.0.0.1"
+  port: 5000
+  refresh_interval_sec: 3

@@ -1,0 +1,98 @@
+{
+  "rules": [
+    {
+      "id": "SIG-001",
+      "category": "SQL_INJECTION",
+      "description": "Detects common SQL injection keywords and boolean bypass patterns often used in query manipulation.",
+      "severity": "HIGH",
+      "action": "BLOCK",
+      "patterns": [
+        "' or 1=1",
+        "\" or 1=1",
+        " or 1=1",
+        "union select",
+        "select * from",
+        "information_schema",
+        "sleep(",
+        "benchmark(",
+        "--",
+        "/*",
+        "*/"
+      ]
+    },
+    {
+      "id": "SIG-002",
+      "category": "XSS",
+      "description": "Detects common cross-site scripting indicators such as script tags, event handlers, and JavaScript URIs.",
+      "severity": "HIGH",
+      "action": "ALERT",
+      "patterns": [
+        "<script",
+        "javascript:",
+        "onerror=",
+        "onload=",
+        "alert(",
+        "document.cookie",
+        "<img",
+        "<svg",
+        "srcdoc="
+      ]
+    },
+    {
+      "id": "SIG-003",
+      "category": "DIRECTORY_TRAVERSAL",
+      "description": "Detects directory traversal sequences and attempts to access sensitive system files.",
+      "severity": "HIGH",
+      "action": "BLOCK",
+      "patterns": [
+        "../",
+        "..\\",
+        "/etc/passwd",
+        "boot.ini",
+        "win.ini",
+        "/proc/self/environ"
+      ]
+    },
+    {
+      "id": "SIG-004",
+      "category": "COMMAND_INJECTION",
+      "description": "Detects shell command chaining and command execution keywords that indicate possible command injection.",
+      "severity": "CRITICAL",
+      "action": "BLOCK",
+      "patterns": [
+        ";whoami",
+        "&& whoami",
+        "| whoami",
+        ";id",
+        "&& id",
+        "| id",
+        ";cat ",
+        "&& cat ",
+        "| cat ",
+        "&& ping",
+        "; ping",
+        "| ping",
+        "powershell -enc",
+        "cmd.exe /c"
+      ]
+    },
+    {
+      "id": "SIG-005",
+      "category": "RECONNAISSANCE",
+      "description": "Detects reconnaissance and scanning tool identifiers commonly seen in automated probing traffic.",
+      "severity": "MEDIUM",
+      "action": "ALERT",
+      "patterns": [
+        "nmap",
+        "nikto",
+        "dirb",
+        "gobuster",
+        "sqlmap",
+        "masscan",
+        "acunetix",
+        "wpscan",
+        "whatweb"
+      ]
+    }
+  ]
+}

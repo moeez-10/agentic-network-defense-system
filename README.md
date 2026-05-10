@@ -1,28 +1,82 @@
 # Agentic Network Defense System
 
-A modular network security project designed to monitor network traffic, detect malicious activity, apply Zero Trust principles, and make autonomous defense decisions. The system combines packet sniffing, signature-based and anomaly-based intrusion detection, trust scoring, policy enforcement, and a live monitoring dashboard.
+A modular network security defense system that combines packet capture, intrusion detection, zero trust policy enforcement, and autonomous agent-based decision making.
 
-## Core Modules
-- **Sniffer** – Captures live network packets and extracts important packet information.
-- **Detection Engine** – Identifies suspicious or malicious traffic using signatures and anomaly detection.
-- **Zero Trust Engine** – Maintains trust scores and enforces access decisions based on policy.
-- **Agent Engine** – Makes autonomous decisions such as allow, alert, throttle, or block.
-- **Dashboard** – Displays alerts, trust scores, blocked IPs, and agent decisions in real time.
-
-## Technologies Used
-- Python
-- Scapy
-- Flask
-- Wireshark
+## Architecture
+1. **Network Sensor** - Packet capture and L7 classification  
+2. **Detection Engine** - Signature + Anomaly based IDS/IPS  
+3. **Agentic Decision Engine** - Autonomous threat response  
+4. **Zero Trust Policy Engine** - Trust scoring + micro-segmentation  
+5. **Dashboard** - Live monitoring UI  
 
 ## Project Structure
+```text
 agentic-network-defense-system/
-├── sniffer/
-├── detection/
-├── agent/
-├── zero_trust/
-├── dashboard/
+├── sniffer/                # Packet capture and preprocessing
+├── detection/              # IDS/IPS signature + anomaly detection
+├── agent/                  # Autonomous decision engine
+├── zero_trust/             # Trust scoring and policy enforcement
+├── dashboard/              # Flask monitoring dashboard
 │   └── templates/
-├── config.yaml
-├── requirements.txt
+├── tests/                  # Test suite
+├── config.yaml             # Project configuration
+├── requirements.txt        # Python dependencies
 └── README.md
+Setup
+Bash
+
+# Create virtual environment
+python -m venv venv
+
+# Activate venv (Windows)
+venv\Scripts\activate
+
+# Install dependencies
+pip install -r requirements.txt
+Current Status
+✅ Day 1: Environment setup
+✅ Day 2: Basic packet capture
+✅ Day 3: Layer 7 classification
+✅ Day 4: Architecture diagram
+✅ Day 5: Project skeleton + configuration
+
+Phases
+Phase 1: Foundation / Setup / Architecture
+Phase 2: Core Engine / IDS/IPS
+Phase 3: Zero Trust + Agentic Defense
+Phase 4: Dashboard + Final Testing
+Verified Skeleton Structure
+text
+
+Agentic_Network_Defense_System/
+├── .gitignore
+├── README.md
+├── requirements.txt
+├── config.yaml
+├── sniffer/
+│   ├── __init__.py
+│   └── capture.py
+├── detection/
+│   ├── __init__.py
+│   ├── signature_engine.py
+│   └── anomaly_engine.py
+├── agent/
+│   ├── __init__.py
+│   └── decision_agent.py
+├── zero_trust/
+│   ├── __init__.py
+│   ├── trust_score.py
+│   └── policy_engine.py
+├── dashboard/
+│   ├── __init__.py
+│   ├── app.py
+│   └── templates/
+│       └── index.html
+└── tests/
+    ├── __init__.py
+    └── test_detection.py
+
+
+
+
+
